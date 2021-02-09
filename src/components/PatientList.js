@@ -1,12 +1,13 @@
 import React from 'react';
-import Entry from './Entry';
 
 const PatientList = (data) => {
 
 
     return (
         <div className='datacontent'>
-           <ul className='list'>
+            <div className="physician-header">**physician name**</div>
+            <div className="physician-email">**email**</div>
+            <ul className='list'>
                 {
                     // data.sort.map((entry, index) => (
                     //     <
