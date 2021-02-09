@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PhysicianList from './PhysicianList';
-import PatientList from './PatientList';
 
 class App extends Component {
   constructor(props) {
@@ -34,15 +33,10 @@ class App extends Component {
   render() {
     return (
       <div className="wrapper">
-        <div className="left-bar">
-          <div className="notable-logo"></div>
-          <h2>Physicians</h2>
-          <PhysicianList physicians={this.state.physicians} />
-          <div className="logout-btn"></div>
-        </div>
-        <div className="right-bar">
-          <PatientList patients={this.state.patients} />
-        </div>
+        <div className="notable-logo"></div>
+        <h2>Physicians</h2>
+        <PhysicianList physicians={this.state.physicians} />
+        <div className="logout-btn"></div>
       </div>
      );
   }

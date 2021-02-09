@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
+import Entry from './Entry';
 
-class PhysicianList extends React.Component {
+class PhysicianList extends Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
-            calendar: [],
-        };
+            id: null,
+            calendar: []
+        }
         this.getCalendar = this.getCalendar.bind(this);
         this.handleClick = this.handleClick.bind(this);
     }
 
-    getCalendar(name) {
-        fetch(`/physicians/${name}/patients`)
+
+    getCalendar(id) {
+        fetch(`/physicians/${id}/patients`)
             .then(res => res.json())
             .then(
                 (response) => {
@@ -27,28 +30,37 @@ class PhysicianList extends React.Component {
     }
 
     handleClick(e) {
-        // e.preventDefault();
-        this.getCalendar(e.target.innerHTML);
+       this.getCalendar(e)
+        console.log(e)
     }
+
 
     render() {
         return (
-            <div className='datacontent'>
-                <ul className='list'>
+            <div>
+                <ul>
                     {
                         this.props.physicians.map((physician, index) => (
-                            <li
-                                key={index}
+                            <div
+                                key={index+physician.id}
+                                id={physician.id}
                                 physician={physician}
-                                onClick={this.handleClick}
-                            > {physician.name}</li>
+                                onClick={(() => this.handleClick(physician.id))}
+                            > {physician.name}</div>
                         ))
                     }
-                </ul>
+            </ul>
+            <ul>
+                {
+                    this.state.calendar.map((entry, index) => (
+                        <Entry key={index} entry={entry} />
+                    ))
+                }
+            </ul>
+
             </div>
         )
     }
-
 }
 
 
